@@ -1,0 +1,9 @@
+# Development files
+node_modules
+episodes
+
+# Local files
+.env
+lastPlayed.json
+persist
+tmp
