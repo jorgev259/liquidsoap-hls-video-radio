@@ -34,9 +34,10 @@ async function run () {
     : 0
   const next = fileList[nextIndex]
 
-  console.log(next.fullPath)
-
-  await fs.writeJSON(lastPlayedPath, next)
+  if (next) {
+    console.log(next.fullPath)
+    await fs.writeJSON(lastPlayedPath, next)
+  }
 }
 
 run()

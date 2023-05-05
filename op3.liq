@@ -1,5 +1,5 @@
 beatbox = single("~/shared/beatbox.mp4")
-firstEP = true
+firstEp = ref(true)
 
 aac_hifi = %ffmpeg(
     format="mpegts",
@@ -19,10 +19,10 @@ aac_hifi = %ffmpeg(
 streams = [("aac_hifi", aac_hifi)]
 
 def getNextEpisode() =
-    if (firstEP) then
+    if (!firstEp) then
+        firstEp := false
         request.create(list.hd(default="", process.read.lines("node getNextEpisode -f")))
     else
-        firstEp = false
         request.create(list.hd(default="", process.read.lines("node getNextEpisode")))     
     end
 end
