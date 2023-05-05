@@ -1,4 +1,4 @@
-beatbox = single("~/shared/beatbox.mp4")
+beatbox = single(id="fallback", "~/shared/beatbox.mp4")
 firstEp = ref(true)
 
 aac_hifi = %ffmpeg(
@@ -30,7 +30,7 @@ end
 # Create the source
 source = fallback(
     id="onepiece", track_sensitive=false, 
-    [request.dynamic(getNextEpisode), beatbox]
+    [request.dynamic(id="onepiece", getNextEpisode), beatbox]
 )
 
 hlsStream = output.harbor.hls(
