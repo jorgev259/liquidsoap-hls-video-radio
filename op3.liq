@@ -19,12 +19,9 @@ aac_hifi = %ffmpeg(
 streams = [("aac_hifi", aac_hifi)]
 
 def getNextEpisode() =
-    if (!firstEp) then
+    nodeString = if !firstEp then "node getNextEpisode -f" else "node getNextEpisode" end
         firstEp := false
-        request.create(list.hd(default="", process.read.lines("node getNextEpisode -f")))
-    else
-        request.create(list.hd(default="", process.read.lines("node getNextEpisode")))     
-    end
+    request.create(list.hd(default="", process.read.lines(nodeString)))     
 end
 
 # Create the source
